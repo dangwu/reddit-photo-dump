@@ -16,9 +16,18 @@ protocol RedditImageDownloaderDelegate {
 
 class RedditImageDownloader {
     
+    var subreddits = ["pics", "itookapicture", "earthporn", "ruralporn", "skyporn", "spaceporn", "cityporn", "architectureporn", "abandonedporn", "infrastructureporn", "cabinporn", "villageporn", "nature", "naturepics", "remoteplaces", "travel", "breathless", "amateurphotography", "wallpapers"]
+    
+    var randomSubreddit: String {
+        let randomIndex = Int(arc4random_uniform(UInt32(subreddits.count)))
+        return subreddits[randomIndex]
+    }
+    
     var delegate: RedditImageDownloaderDelegate?
-    var tasks: [NSURLSessionDataTask]?
+    
     var running = false
+    
+    private var tasks: [NSURLSessionDataTask]?
     
     init(delegate: RedditImageDownloaderDelegate) {
         self.delegate = delegate
@@ -34,9 +43,11 @@ class RedditImageDownloader {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
     
-    func downloadImagesFromSubreddit(subreddit: String) {
+    func downloadImages(fromSubreddit subreddit: String? = nil) {
         running = true
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        let subreddit = subreddit ?? randomSubreddit
         downloadUrl("https://www.reddit.com/r/\(subreddit)/.json")
     }
     

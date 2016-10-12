@@ -16,6 +16,7 @@
 		9169D0E91DACC37E00D587DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9169D0E71DACC37E00D587DC /* LaunchScreen.storyboard */; };
 		918D91441DAE22790025213E /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D91431DAE22790025213E /* ImageUtil.swift */; };
 		918D91481DAE24640025213E /* RedditImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D91471DAE24640025213E /* RedditImageDownloader.swift */; };
+		918D91521DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D91511DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9169D0FA1DACC37E00D587DC /* RedditPhotoDump.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditPhotoDump.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		918D91431DAE22790025213E /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		918D91471DAE24640025213E /* RedditImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditImageDownloader.swift; sourceTree = "<group>"; };
+		918D91511DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				9169D0DE1DACC37E00D587DC /* AppDelegate.swift */,
 				9169D0E01DACC37E00D587DC /* MainViewController.swift */,
+				918D91511DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift */,
 				9113A6591DADEBA70066F8C1 /* PhotoCollectionViewCell.swift */,
 				918D91471DAE24640025213E /* RedditImageDownloader.swift */,
 				918D91431DAE22790025213E /* ImageUtil.swift */,
@@ -108,7 +111,6 @@
 				9169D0E51DACC37E00D587DC /* Assets.xcassets */,
 				9169D0EA1DACC37E00D587DC /* Info.plist */,
 			);
-			name = RedditPhotoDump;
 			path = RedditPhotoDump;
 			sourceTree = "<group>";
 		};
@@ -249,6 +251,7 @@
 				9169D0E11DACC37E00D587DC /* MainViewController.swift in Sources */,
 				9113A65A1DADEBA70066F8C1 /* PhotoCollectionViewCell.swift in Sources */,
 				9148A3401DADA9C100737D6F /* PHPhotoLibrary+Helper.swift in Sources */,
+				918D91521DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift in Sources */,
 				918D91441DAE22790025213E /* ImageUtil.swift in Sources */,
 				918D91481DAE24640025213E /* RedditImageDownloader.swift in Sources */,
 				9169D0DF1DACC37E00D587DC /* AppDelegate.swift in Sources */,

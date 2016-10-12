@@ -18,7 +18,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBAction func startButtonPressed(sender: AnyObject) {
-        if redditImageDownloader?.tasks?.count ?? 0 > 0 {
+        if redditImageDownloader?.running ?? false {
             // Stop
             startButton.setTitle("Start", forState: .Normal)
             startButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
             // Start
             startButton.setTitle("Stop", forState: .Normal)
             startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-            redditImageDownloader?.downloadImagesFromSubreddit("pics")
+            redditImageDownloader?.downloadImages()
             downloadedFileNames.removeAll()
         }
     }
@@ -40,6 +40,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
         redditImageDownloader = RedditImageDownloader(delegate: self)
         
         collectionView.dataSource = self
+        collectionView.collectionViewLayout = GridCollectionViewFlowLayout()
     }
     
     // MARK: - UICollectionViewDataSource
@@ -55,23 +56,11 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(PhotoCollectionViewCell), forIndexPath: indexPath) as! PhotoCollectionViewCell
         
-        let imageFileName = downloadedFileNames[indexPath.row]
-        cell.imageFileName = imageFileName
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {            
-            if let fileURL = ImageUtil.urlForImage(imageFileName),
-                let imageFilePath = fileURL.path {
-                if let image = UIImage(contentsOfFile: imageFilePath) {
-                    let thumbnailImage = ImageUtil.resize(image, targetSize: CGSizeMake(100, 100))
-
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if cell.imageFileName != nil && cell.imageFileName == imageFileName {
-                            cell.photoImageView.image = thumbnailImage
-                        }
-                    }
-                }
-            }
+        let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        if let imageSize = flowLayout?.itemSize {
+            cell.imageSize = imageSize
         }
+        cell.imageFileName = downloadedFileNames[indexPath.row]
         
         return cell
     }
@@ -81,7 +70,9 @@ extension MainViewController: RedditImageDownloaderDelegate {
     
     func imageDownloaded(fileName: String) {
         downloadedFileNames.append(fileName)
-        collectionView.reloadData()
+        
+        let newIndexPath = NSIndexPath(forRow: collectionView.numberOfItemsInSection(0), inSection: 0)
+        collectionView.insertItemsAtIndexPaths([newIndexPath])
     }
     
 }

@@ -49,9 +49,7 @@ extension PHPhotoLibrary {
             PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(url)
             }, completionHandler: {
                 success, error in
-                if success {
-                    NSLog("PHPhotoLibrary - Added image to user's camera roll.")
-                } else {
+                if !success {
                     NSLog("PHPhotoLibrary - Error adding image to user's camera roll. \(error!)")
                 }
         })
