@@ -11,24 +11,27 @@ import UIKit
 
 class MainViewController: UIViewController, UICollectionViewDataSource {
     
-    private var redditImageDownloader: RedditImageDownloader?
-    private var downloadedFileNames = [String]()
+    fileprivate var redditImageDownloader: RedditImageDownloader?
+    fileprivate var downloadedFileNames = [String]()
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
 
-    @IBAction func startButtonPressed(sender: AnyObject) {
+    @IBAction func startButtonPressed(_ sender: AnyObject) {
         if redditImageDownloader?.running ?? false {
             // Stop
-            startButton.setTitle("Start", forState: .Normal)
-            startButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            startButton.setTitle("Start", for: UIControlState())
+            startButton.setTitleColor(UIColor.blue, for: UIControlState())
             redditImageDownloader?.cancel()
+            downloadedFileNames.removeAll()
+            collectionView.reloadData()
         } else {
             // Start
-            startButton.setTitle("Stop", forState: .Normal)
-            startButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-            redditImageDownloader?.downloadImages()
+            startButton.setTitle("Stop", for: UIControlState())
+            startButton.setTitleColor(UIColor.red, for: UIControlState())
             downloadedFileNames.removeAll()
+            collectionView.reloadData()
+            redditImageDownloader?.downloadImages()
         }
     }
     
@@ -45,7 +48,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     
     // MARK: - UICollectionViewDataSource
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return downloadedFileNames.count
         } else {
@@ -53,14 +56,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(PhotoCollectionViewCell), forIndexPath: indexPath) as! PhotoCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
         
         let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         if let imageSize = flowLayout?.itemSize {
             cell.imageSize = imageSize
         }
-        cell.imageFileName = downloadedFileNames[indexPath.row]
+        cell.imageFileName = downloadedFileNames[(indexPath as NSIndexPath).row]
         
         return cell
     }
@@ -68,11 +71,11 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
 
 extension MainViewController: RedditImageDownloaderDelegate {
     
-    func imageDownloaded(fileName: String) {
+    func imageDownloaded(_ fileName: String) {
         downloadedFileNames.append(fileName)
         
-        let newIndexPath = NSIndexPath(forRow: collectionView.numberOfItemsInSection(0), inSection: 0)
-        collectionView.insertItemsAtIndexPaths([newIndexPath])
+        let newIndexPath = IndexPath(row: collectionView.numberOfItems(inSection: 0), section: 0)
+        collectionView.insertItems(at: [newIndexPath])
     }
     
 }

@@ -16,7 +16,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     var imageFileName: String? {
         didSet {
-            if let imageFileName = imageFileName where imageFileName != oldValue {
+            if let imageFileName = imageFileName , imageFileName != oldValue {
                 loadPhoto(imageFileName)
             }
         }
@@ -29,22 +29,24 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         photoImageView.image = nil
     }
     
-    private func loadPhoto(fileName: String) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    fileprivate func loadPhoto(_ fileName: String) {
+        DispatchQueue.global().async {
             [weak self] _ in
             
-            guard let fileURL = ImageUtil.urlForImage(fileName),
-                let imageFilePath = fileURL.path,
-                let image = UIImage(contentsOfFile: imageFilePath) else {
+            guard let fileURL = ImageUtil.urlForImage(fileName) else {
                 return
             }
             
-            let thumbnailImage = ImageUtil.resize(image, targetSize: self?.imageSize ?? CGSizeMake(150, 150))
+            guard let image = UIImage(contentsOfFile: fileURL.path) else {
+                return
+            }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            let thumbnailImage = ImageUtil.resize(image, targetSize: self?.imageSize ?? CGSize(width: 150, height: 150))
+            
+            DispatchQueue.main.async {
                 [weak self] _ in
                 
-                if let imageFileName = self?.imageFileName where imageFileName == fileName {
+                if let imageFileName = self?.imageFileName , imageFileName == fileName {
                     self?.photoImageView.image = thumbnailImage
                 }
             }

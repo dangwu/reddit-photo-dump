@@ -19,12 +19,12 @@ extension PHPhotoLibrary {
      -url: url to media file
      -video: is the asset a video?
      */
-    static func addImageAtURL(url: NSURL) {
-        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.Authorized {
+    static func addImageAtURL(_ url: URL) {
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
             // Need permission first
             PHPhotoLibrary.requestAuthorization({
                 status in
-                if status == PHAuthorizationStatus.Authorized {
+                if status == PHAuthorizationStatus.authorized {
                     performMediaAssetCreationRequest(url)
                 } else {
                     NSLog("PHPhotoLibrary - Failed to get authorization to add media to photo library")
@@ -44,9 +44,9 @@ extension PHPhotoLibrary {
      -url: url to media file
      -video: is the asset a video?
      */
-    private static func performMediaAssetCreationRequest(url: NSURL) {
-        PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(url)
+    fileprivate static func performMediaAssetCreationRequest(_ url: URL) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
             }, completionHandler: {
                 success, error in
                 if !success {
