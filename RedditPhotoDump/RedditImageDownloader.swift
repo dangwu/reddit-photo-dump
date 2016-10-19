@@ -16,15 +16,6 @@ protocol RedditImageDownloaderDelegate {
 
 class RedditImageDownloader {
     
-    let imageExtensions = [".jpg", ".jpeg", ".png"]
-    
-    var subreddits = ["pics", "itookapicture", "earthporn", "ruralporn", "skyporn", "spaceporn", "cityporn", "architectureporn", "abandonedporn", "infrastructureporn", "cabinporn", "villageporn", "nature", "naturepics", "remoteplaces", "travel", "breathless", "amateurphotography", "wallpapers"]
-    
-    var randomSubreddit: String {
-        let randomIndex = Int(arc4random_uniform(UInt32(subreddits.count)))
-        return subreddits[randomIndex]
-    }
-    
     var delegate: RedditImageDownloaderDelegate?
     
     var running = false
@@ -49,7 +40,7 @@ class RedditImageDownloader {
         running = true
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        let subreddit = subreddit ?? randomSubreddit
+        let subreddit = subreddit ?? Subreddits.random()
         downloadUrl("https://www.reddit.com/r/\(subreddit)/.json")
     }
     
@@ -83,16 +74,16 @@ class RedditImageDownloader {
                     return
                 }
                 
-                // Parse json for image urls
+                // Parse JSON for URLs to images to download
                 let dataDict = json.object(forKey: "data") as! NSDictionary
                 let childrenArr = dataDict.object(forKey: "children") as! [[String: AnyObject]]
                 for postDict in childrenArr {
                     for (postKey, postValue) in postDict where postKey == "data" {
-                        let postValueDict = postValue as! [String: AnyObject]
-                        for (key, value) in postValueDict where key == "url" {
-                            if let url = value as? String {
+                        for (dataKey, dataValue) in postValue as! [String: AnyObject] where dataKey == "url" {
+                            if let url = dataValue as? String {
+                                // URL to an image found. Download it!
                                 if url.lowercased().contains(".jpg") || url.lowercased().contains(".png") {
-                                    self?.downloadImageAtURL(String(CACurrentMediaTime()), url: URL(string: url)!)
+                                    self?.downloadImageAtURL(url: URL(string: url)!)
                                 }
                             }
                         }
@@ -115,7 +106,7 @@ class RedditImageDownloader {
         tasks?.append(task)
     }
     
-    fileprivate func downloadImageAtURL(_ name: String, url: URL) {
+    fileprivate func downloadImageAtURL(url: URL) {
         guard running else {
             return
         }
@@ -130,7 +121,8 @@ class RedditImageDownloader {
                 return
             }
             
-            let fileName = "\(name).jpg"
+            let time = String(CACurrentMediaTime())
+            let fileName = "\(time).jpg"
             
             guard let data = data,
                 let image = UIImage(data: data),

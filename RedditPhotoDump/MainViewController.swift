@@ -23,8 +23,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
             startButton.setTitle("Start", for: UIControlState())
             startButton.setTitleColor(UIColor.blue, for: UIControlState())
             redditImageDownloader?.cancel()
-            downloadedFileNames.removeAll()
-            collectionView.reloadData()
         } else {
             // Start
             startButton.setTitle("Stop", for: UIControlState())
