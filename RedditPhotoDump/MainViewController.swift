@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     @IBAction func startButtonPressed(_ sender: AnyObject) {
         if redditImageDownloader?.running ?? false {
@@ -80,7 +81,11 @@ extension MainViewController: RedditImageDownloaderDelegate {
         let newIndexPath = IndexPath(row: collectionView.numberOfItems(inSection: 0), section: 0)
         collectionView.insertItems(at: [newIndexPath])
         
-        countLabel.text = String(downloadedFileNames.count)
+        let downloadedCount = downloadedFileNames.count
+        countLabel.text = String(downloadedCount)
+        
+        let progress: Float = Float(downloadedCount)/Float(redditImageDownloader?.totalImagesCount ?? 1)
+        progressView.setProgress(progress, animated: true)
     }
     
 }

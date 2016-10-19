@@ -65,11 +65,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EYn-fN-yKe"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="bottom" secondItem="7Hu-SK-6tx" secondAttribute="bottom" constant="40" id="0Qi-2N-kaV"/>
+                            <constraint firstItem="EYn-fN-yKe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4NL-Jt-d44"/>
+                            <constraint firstAttribute="trailing" secondItem="EYn-fN-yKe" secondAttribute="trailing" id="63R-u2-Yey"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AsB-MW-KC1"/>
+                            <constraint firstItem="Xww-a7-6ld" firstAttribute="top" secondItem="EYn-fN-yKe" secondAttribute="bottom" constant="10" id="Kr6-NN-fQP"/>
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lwd-Nr-vBC"/>
                             <constraint firstAttribute="leading" secondItem="btG-fZ-oDp" secondAttribute="leading" constant="-15" id="XnW-xc-Cao"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="daq-dZ-nuV"/>
@@ -83,6 +87,7 @@
                     <connections>
                         <outlet property="collectionView" destination="7Hu-SK-6tx" id="y7h-qM-E2H"/>
                         <outlet property="countLabel" destination="bAd-9F-Wof" id="zNR-Sd-w1d"/>
+                        <outlet property="progressView" destination="EYn-fN-yKe" id="viq-C4-t8r"/>
                         <outlet property="startButton" destination="Xww-a7-6ld" id="4M5-8t-86D"/>
                         <outlet property="subredditLabel" destination="btG-fZ-oDp" id="cZE-1O-dxZ"/>
                     </connections>

@@ -22,6 +22,8 @@ class RedditImageDownloader {
     
     var subreddit: String?
     
+    var totalImagesCount = 0
+    
     fileprivate var tasks: [URLSessionDataTask]?
     
     init(delegate: RedditImageDownloaderDelegate) {
@@ -35,6 +37,7 @@ class RedditImageDownloader {
             task.cancel()
         }
         tasks?.removeAll()
+        totalImagesCount = 0
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
@@ -112,6 +115,8 @@ class RedditImageDownloader {
         guard running else {
             return
         }
+        
+        totalImagesCount += 1
         
         NSLog("Downloading image at url \(url)")
         let request = URLRequest(url: url)
