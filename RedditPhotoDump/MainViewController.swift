@@ -16,7 +16,9 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var subredditLabel: UILabel!
+    
     @IBAction func startButtonPressed(_ sender: AnyObject) {
         if redditImageDownloader?.running ?? false {
             // Stop
@@ -27,9 +29,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
             // Start
             startButton.setTitle("Stop", for: UIControlState())
             startButton.setTitleColor(UIColor.red, for: UIControlState())
+            countLabel.text = "0"
             downloadedFileNames.removeAll()
             collectionView.reloadData()
+            redditImageDownloader?.subreddit = Subreddits.random()
             redditImageDownloader?.downloadImages()
+            subredditLabel.text = redditImageDownloader?.subreddit ?? "pics"
         }
     }
     
@@ -74,6 +79,8 @@ extension MainViewController: RedditImageDownloaderDelegate {
         
         let newIndexPath = IndexPath(row: collectionView.numberOfItems(inSection: 0), section: 0)
         collectionView.insertItems(at: [newIndexPath])
+        
+        countLabel.text = String(downloadedFileNames.count)
     }
     
 }

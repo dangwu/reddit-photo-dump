@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -14,12 +15,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Hu-SK-6tx">
-                                <rect key="frame" x="0.0" y="20" width="600" height="530"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cNe-Ac-nJg">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -34,11 +34,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="twr-hi-ab0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="twr-hi-ab0"/>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="twr-hi-ab0" firstAttribute="top" secondItem="xns-eu-qxC" secondAttribute="top" id="TTs-hI-YIL"/>
@@ -53,26 +50,41 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xww-a7-6ld" userLabel="Start Button">
-                                <rect key="frame" x="283" y="560" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zhf-Kd-S7I"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAd-9F-Wof" userLabel="Count Label">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btG-fZ-oDp" userLabel="Subreddit Label">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="bottom" secondItem="7Hu-SK-6tx" secondAttribute="bottom" constant="40" id="0Qi-2N-kaV"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AsB-MW-KC1"/>
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lwd-Nr-vBC"/>
+                            <constraint firstAttribute="leading" secondItem="btG-fZ-oDp" secondAttribute="leading" constant="-15" id="XnW-xc-Cao"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="daq-dZ-nuV"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="ho1-Bo-njJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Hu-SK-6tx" secondAttribute="bottom" constant="50" id="jK5-TT-xxB"/>
+                            <constraint firstItem="btG-fZ-oDp" firstAttribute="centerY" secondItem="Xww-a7-6ld" secondAttribute="centerY" id="neK-mM-Tml"/>
+                            <constraint firstAttribute="trailing" secondItem="bAd-9F-Wof" secondAttribute="trailing" constant="15" id="vrM-6z-xGH"/>
+                            <constraint firstItem="bAd-9F-Wof" firstAttribute="centerY" secondItem="Xww-a7-6ld" secondAttribute="centerY" id="zQO-uy-tFE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="7Hu-SK-6tx" id="y7h-qM-E2H"/>
+                        <outlet property="countLabel" destination="bAd-9F-Wof" id="zNR-Sd-w1d"/>
                         <outlet property="startButton" destination="Xww-a7-6ld" id="4M5-8t-86D"/>
+                        <outlet property="subredditLabel" destination="btG-fZ-oDp" id="cZE-1O-dxZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

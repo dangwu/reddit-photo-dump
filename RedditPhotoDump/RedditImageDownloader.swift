@@ -20,6 +20,8 @@ class RedditImageDownloader {
     
     var running = false
     
+    var subreddit: String?
+    
     fileprivate var tasks: [URLSessionDataTask]?
     
     init(delegate: RedditImageDownloaderDelegate) {
@@ -36,12 +38,12 @@ class RedditImageDownloader {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-    func downloadImages(fromSubreddit subreddit: String? = nil) {
+    func downloadImages() {
         running = true
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        let subreddit = subreddit ?? Subreddits.random()
-        downloadUrl("https://www.reddit.com/r/\(subreddit)/.json")
+        downloadUrl("https://www.reddit.com/r/\(subreddit ?? "pics")/.json")
     }
     
     fileprivate func downloadUrl(_ url: String, pageAfterToken: String? = nil) {
