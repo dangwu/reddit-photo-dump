@@ -73,6 +73,9 @@ class RedditImageDownloader {
             [weak self]
             data, response, error in
             do {
+                guard self?.running ?? false else {
+                    return
+                }
                 guard let data = data else {
                     return
                 }
@@ -94,6 +97,10 @@ class RedditImageDownloader {
                             }
                         }
                     }
+                }
+                
+                guard self?.running ?? false else {
+                    return
                 }
                 
                 if let pageAfterToken = dataDict.object(forKey: "after") as? String {
@@ -119,6 +126,10 @@ class RedditImageDownloader {
             [weak self]
             data, response, error in
             
+            guard self?.running ?? false else {
+                return
+            }
+            
             let fileName = "\(name).jpg"
             
             guard let data = data,
@@ -136,6 +147,9 @@ class RedditImageDownloader {
             
             // Notify delegate of new image
             DispatchQueue.main.async {
+                guard self?.running ?? false else {
+                    return
+                }
                 self?.delegate?.imageDownloaded(fileName)
             }
         }) 

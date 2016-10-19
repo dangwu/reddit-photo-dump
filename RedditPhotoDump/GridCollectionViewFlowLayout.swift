@@ -11,7 +11,7 @@ import UIKit
 class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     /// Number of items that should be displayed in a single row. itemSize will be calculated using this value. Layout should be invalidated after changing this value.
-    var itemsPerRow = 3
+    var itemsPerRow = 5
     
     override func prepare() {
         sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
