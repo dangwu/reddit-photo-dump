@@ -76,14 +76,16 @@
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="top" secondItem="EYn-fN-yKe" secondAttribute="bottom" constant="10" id="Kr6-NN-fQP"/>
                             <constraint firstItem="Xww-a7-6ld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lwd-Nr-vBC"/>
                             <constraint firstAttribute="leading" secondItem="btG-fZ-oDp" secondAttribute="leading" constant="-15" id="XnW-xc-Cao"/>
-                            <constraint firstItem="7Hu-SK-6tx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="daq-dZ-nuV"/>
                             <constraint firstItem="7Hu-SK-6tx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="ho1-Bo-njJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Hu-SK-6tx" secondAttribute="bottom" constant="50" id="jK5-TT-xxB"/>
                             <constraint firstItem="btG-fZ-oDp" firstAttribute="centerY" secondItem="Xww-a7-6ld" secondAttribute="centerY" id="neK-mM-Tml"/>
                             <constraint firstAttribute="trailing" secondItem="bAd-9F-Wof" secondAttribute="trailing" constant="15" id="vrM-6z-xGH"/>
+                            <constraint firstItem="7Hu-SK-6tx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ysH-Nr-Luh"/>
                             <constraint firstItem="bAd-9F-Wof" firstAttribute="centerY" secondItem="Xww-a7-6ld" secondAttribute="centerY" id="zQO-uy-tFE"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="7Hu-SK-6tx" id="y7h-qM-E2H"/>
                         <outlet property="countLabel" destination="bAd-9F-Wof" id="zNR-Sd-w1d"/>
