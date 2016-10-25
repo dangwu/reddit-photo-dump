@@ -1,6 +1,6 @@
 //
-//  UIImage+Resize.swift
-//  PosthastePics
+//  ImageUtil.swift
+//  RedditPhotoDump
 //
 //  Created by Wu, Daniel on 10/12/16.
 //  Copyright © 2016 Wu, Daniel. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  RedditImageDownloader.swift
-//  PosthastePics
+//  RedditPhotoDump
 //
 //  Created by Wu, Daniel on 10/12/16.
 //  Copyright © 2016 Wu, Daniel. All rights reserved.
@@ -154,6 +154,39 @@ class RedditImageDownloader {
         }) 
         task.resume()
         tasks?.append(task)
+    }
+    
+    func deleteAllDownloadedFiles() {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+        
+        do {
+            let fileNames = try FileManager.default.contentsOfDirectory(atPath: documentsURL.path)
+            for fileName in fileNames {
+                do {
+                    let filePath = "\(documentsURL)\(fileName)"
+                    NSLog("Deleting file at \(filePath)")
+                    try FileManager.default.removeItem(atPath: filePath)
+                } catch let error as NSError {
+                    NSLog("Could not clear downloaded files: \(error.debugDescription)")
+                }
+            }
+        } catch let error as NSError {
+            NSLog("Could not clear downloaded files: \(error.debugDescription)")
+        }
+        
+    }
+}
+
+extension String {
+    
+    // Remove the last character in this String
+    var chomp: String {
+        mutating get {
+            self.remove(at: self.startIndex)
+            return self
+        }
     }
     
 }

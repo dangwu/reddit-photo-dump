@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  PosthastePics
+//  RedditPhotoDump
 //
 //  Created by Wu, Daniel on 10/10/16.
 //  Copyright © 2016 Wu, Daniel. All rights reserved.
@@ -34,6 +34,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
             downloadedFileNames.removeAll()
             collectionView.reloadData()
             redditImageDownloader?.subreddit = Subreddits.random()
+            redditImageDownloader?.deleteAllDownloadedFiles()
             redditImageDownloader?.downloadImages()
             subredditLabel.text = redditImageDownloader?.subreddit ?? "pics"
         }

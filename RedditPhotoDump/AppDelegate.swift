@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  PosthastePics
+//  RedditPhotoDump
 //
 //  Created by Wu, Daniel on 10/10/16.
 //  Copyright © 2016 Wu, Daniel. All rights reserved.

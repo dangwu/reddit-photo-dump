@@ -1,6 +1,6 @@
 //
 //  PHPhotoLibrary+Helper.swift
-//  PosthastePics
+//  RedditPhotoDump
 //
 //  Created by Wu, Daniel on 10/11/16.
 //  Copyright © 2016 Wu, Daniel. All rights reserved.
