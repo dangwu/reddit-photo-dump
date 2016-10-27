@@ -102,16 +102,16 @@
 			isa = PBXGroup;
 			children = (
 				9169D0DE1DACC37E00D587DC /* AppDelegate.swift */,
-				9169D0E01DACC37E00D587DC /* MainViewController.swift */,
 				918D91511DAE8C6D0025213E /* GridCollectionViewFlowLayout.swift */,
+				918D91431DAE22790025213E /* ImageUtil.swift */,
+				9169D0E01DACC37E00D587DC /* MainViewController.swift */,
 				9113A6591DADEBA70066F8C1 /* PhotoCollectionViewCell.swift */,
+				9148A33F1DADA9C100737D6F /* PHPhotoLibrary+Helper.swift */,
 				918D91471DAE24640025213E /* RedditImageDownloader.swift */,
 				918A12361DB75F6D00532506 /* Subreddits.swift */,
-				918D91431DAE22790025213E /* ImageUtil.swift */,
-				9148A33F1DADA9C100737D6F /* PHPhotoLibrary+Helper.swift */,
-				9169D0E21DACC37E00D587DC /* Main.storyboard */,
-				9169D0E71DACC37E00D587DC /* LaunchScreen.storyboard */,
 				9169D0E51DACC37E00D587DC /* Assets.xcassets */,
+				9169D0E71DACC37E00D587DC /* LaunchScreen.storyboard */,
+				9169D0E21DACC37E00D587DC /* Main.storyboard */,
 				9169D0EA1DACC37E00D587DC /* Info.plist */,
 			);
 			path = RedditPhotoDump;

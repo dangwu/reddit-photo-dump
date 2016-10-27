@@ -157,36 +157,23 @@ class RedditImageDownloader {
     }
     
     func deleteAllDownloadedFiles() {
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return
         }
         
         do {
-            let fileNames = try FileManager.default.contentsOfDirectory(atPath: documentsURL.path)
+            let fileNames = try FileManager.default.contentsOfDirectory(atPath: cachesDirectory.path)
             for fileName in fileNames {
                 do {
-                    let filePath = "\(documentsURL)\(fileName)"
-                    NSLog("Deleting file at \(filePath)")
-                    try FileManager.default.removeItem(atPath: filePath)
+                    let fileURL = cachesDirectory.appendingPathComponent(fileName)
+                    NSLog("Deleting file at \(fileURL.path)")
+                    try FileManager.default.removeItem(at: fileURL)
                 } catch let error as NSError {
-                    NSLog("Could not clear downloaded files: \(error.debugDescription)")
+                    NSLog("Could not delete file: \(error.debugDescription)")
                 }
             }
         } catch let error as NSError {
             NSLog("Could not clear downloaded files: \(error.debugDescription)")
         }
-        
     }
-}
-
-extension String {
-    
-    // Remove the last character in this String
-    var chomp: String {
-        mutating get {
-            self.remove(at: self.startIndex)
-            return self
-        }
-    }
-    
 }

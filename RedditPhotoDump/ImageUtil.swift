@@ -12,11 +12,11 @@ import UIKit
 class ImageUtil {
     
     static func urlForImage(_ name: String) -> URL? {
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return nil
         }
         
-        let fileURL = documentsURL.appendingPathComponent(name)
+        let fileURL = cachesDirectoryURL.appendingPathComponent(name)
         return fileURL
     }
     
