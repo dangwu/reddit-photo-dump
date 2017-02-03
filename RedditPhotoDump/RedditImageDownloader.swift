@@ -11,7 +11,7 @@ import Photos
 import UIKit
 
 protocol RedditImageDownloaderDelegate {
-    func imageDownloaded(_ fileName: String)
+    func imageDownloaded(withFileName fileName: String)
 }
 
 class RedditImageDownloader {
@@ -24,7 +24,7 @@ class RedditImageDownloader {
     
     var totalImagesCount = 0
     
-    fileprivate var tasks: [URLSessionDataTask]?
+    private var tasks: [URLSessionDataTask]?
     
     init(delegate: RedditImageDownloaderDelegate) {
         self.delegate = delegate
@@ -49,7 +49,7 @@ class RedditImageDownloader {
         downloadUrl("https://www.reddit.com/r/\(subreddit ?? "pics")/.json")
     }
     
-    fileprivate func downloadUrl(_ url: String, pageAfterToken: String? = nil) {
+    private func downloadUrl(_ url: String, pageAfterToken: String? = nil) {
         guard running else {
             return
         }
@@ -111,7 +111,7 @@ class RedditImageDownloader {
         tasks?.append(task)
     }
     
-    fileprivate func downloadImageAtURL(url: URL) {
+    private func downloadImageAtURL(url: URL) {
         guard running else {
             return
         }
@@ -142,14 +142,14 @@ class RedditImageDownloader {
             try? jpgImageData.write(to: fileURL, options: [])
             
             // Add downloaded image to camera roll
-            PHPhotoLibrary.addImageAtURL(fileURL)
+            PHPhotoLibrary.addImage(atURL: fileURL)
             
             // Notify delegate of new image
             DispatchQueue.main.async {
                 guard self?.running ?? false else {
                     return
                 }
-                self?.delegate?.imageDownloaded(fileName)
+                self?.delegate?.imageDownloaded(withFileName: fileName)
             }
         }) 
         task.resume()

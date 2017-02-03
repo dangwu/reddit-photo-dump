@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDataSource {
+class MainViewController: UIViewController, UICollectionViewDataSource, RedditImageDownloaderDelegate {
     
-    fileprivate var redditImageDownloader: RedditImageDownloader?
-    fileprivate var downloadedFileNames = [String]()
+    private var redditImageDownloader: RedditImageDownloader?
+    private var downloadedFileNames = [String]()
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -72,11 +72,10 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
         
         return cell
     }
-}
-
-extension MainViewController: RedditImageDownloaderDelegate {
     
-    func imageDownloaded(_ fileName: String) {
+    // MARK: - RedditImageDownloaderDelegate
+    
+    func imageDownloaded(withFileName fileName: String) {
         downloadedFileNames.append(fileName)
         
         let newIndexPath = IndexPath(row: collectionView.numberOfItems(inSection: 0), section: 0)

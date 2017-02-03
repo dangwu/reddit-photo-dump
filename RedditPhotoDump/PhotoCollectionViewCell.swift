@@ -29,7 +29,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         photoImageView.image = nil
     }
     
-    fileprivate func loadPhoto(_ fileName: String) {
+    private func loadPhoto(_ fileName: String) {
         DispatchQueue.global().async {
             [weak self] _ in
             
